@@ -42,9 +42,8 @@ class ProjectController extends Controller
         $data['slug'] = Str::slug($request->title, '-');
 
         if ($request->has('cover_image')) {
+            $imagePath = Storage::put('posts_images', $request->cover_image);
 
-            $imagePath = 'posts_images/' . $request->file('cover_image')->getClientOriginalName();
-            $request->file('cover_image')->storeAs('/', $imagePath);
             $data['cover_image'] = $imagePath;
         }
         $data['url_view'] = $request->input('url_view');
@@ -89,9 +88,8 @@ class ProjectController extends Controller
         if ($request->has('cover_image')) {
 
 
+            $imagePath = Storage::put('posts_images', $request->cover_image);
 
-            $imagePath = 'posts_images/' . $request->file('cover_image')->getClientOriginalName();
-            $request->file('cover_image')->storeAs('/', $imagePath);
             $data['cover_image'] = $imagePath;
         }
         if ($request->has('technologies')) {
