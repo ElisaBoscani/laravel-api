@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\Project;
+use App\Http\Controllers\Api\ProjectController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,9 +18,8 @@ use App\Models\Project;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('project', function () {
-    return response()->json([
-        'status' => 'sucess',
-        'result' => Project::with('technologies', 'type')->orderByDesc('id')->paginate(12)
-    ]);
-});
+
+
+Route::get('project', [ProjectController::class, 'index']);
+Route::get('project/latest', [ProjectController::class, 'latest']);
+Route::get('project/{project:slug}', [ProjectController::class, 'show']);
