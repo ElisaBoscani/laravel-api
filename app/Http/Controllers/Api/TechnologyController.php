@@ -4,24 +4,24 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Project;
+use App\Models\Technology;
 
-class ProjectController extends Controller
+class TechnologyController extends Controller
 {
     public function index()
     {
         return response()->json([
             'status' => 'success',
-            'result' => Project::with('technologies', 'type')->orderByDesc('id')->paginate(12)
+            'result' => Technology::all()
         ]);
     }
     public function show($slug)
     {
-        $project = Project::with('technologies', 'type')->where('slug', $slug)->first();
-        if ($project) {
+        $technology = Technology::with('projects')->where('slug', $slug)->first();
+        if ($technology) {
             return response()->json([
                 'success' => true,
-                'result' => $project,
+                'result' => $technology,
             ]);
         } else {
             return response()->json([
@@ -29,12 +29,5 @@ class ProjectController extends Controller
                 'result' => 'Project not found',
             ]);
         }
-    }
-    public function latest()
-    {
-        return response()->json([
-            'status' => 'sucess',
-            'result' => Project::with('technologies', 'type')->orderByDesc('id')->take(1)->get()
-        ]);
     }
 }

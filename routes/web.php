@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\TechnologyController;
-
+use App\Http\Controllers\Admin\GitHubController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -40,6 +40,17 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+// routes/web.php
+
+
+
+Route::get('/github-data', [GitHubController::class, 'getGitHubData']);
+
+
+Route::get('/mailable', function () {
+    $lead = App\Models\Lead::find(1);
+    return new App\Mail\NewLeadEmail($lead);
 });
 
 require __DIR__ . '/auth.php';
