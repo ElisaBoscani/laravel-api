@@ -18,7 +18,7 @@ class GitHubController extends Controller
         $gitUser = env('GITHUB_USERNAME');
         /*  dd($token, $gitUser); */
         $response = Http::withHeaders([
-            'Authorization' => 'Bearer ' . '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',
+            'Authorization' => 'Bearer ' . $token,
         ])->withOptions([
             'verify' => true,
             'curl'   => [
