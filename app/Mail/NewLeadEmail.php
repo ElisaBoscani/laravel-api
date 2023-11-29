@@ -19,7 +19,7 @@ class NewLeadEmail extends Mailable
      */
     public function __construct($lead)
     {
-        //
+        $this->lead = $lead;
     }
 
     /**

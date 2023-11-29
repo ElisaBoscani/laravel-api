@@ -26,37 +26,38 @@
 <body>
     <div id="app">
 
-        <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-2 shadow">
-            <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="/">BoolPress</a>
-            <button class="navbar-toggler position-absolute d-md-none collapsed" type="button"
-                data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu"
-                aria-expanded="false" aria-label="Toggle navigation">
+        <header class="navbar flex-md-nowrap p-2  end-0 d-flex justify-content-between ">
+
+
+            <button class="navbar-toggler  d-md-none collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
-            <div class="navbar-nav d-flex">
-                <!-- <div class="nav-item text-nowrap ms-2">
-                    <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();">
-                        {{ __('Logout') }}
-                    </a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
-                </div> -->
-                <ul>
-                    <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->name }}
-                        </a>
+            {{--  <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"> --}}
+            <div class="navbar-nav d-flex w-100">
 
-                        <div class="dropdown-menu position-absolute " aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ url('dashboard') }}">{{ __('Dashboard') }}</a>
-                            <a class="dropdown-item" href="{{ url('profile') }}">{{ __('Profile') }}</a>
-                            <a class="dropdown-item" href="{{ route('logout') }}"
+            </div>
+            <ul class="w-100">
+                <li class="nav-item dropdown d-flex justify-content-end">
+
+                    <button class="nav-link dropdown-toggle " type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                        {{ Auth::user()->name }}</button>
+
+                    <div class="offcanvas offcanvas-end bg_gray text-white" tabindex="-1" id="offcanvasRight"
+                        aria-labelledby="offcanvasRightLabel">
+                        <div class="offcanvas-header">
+
+                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body d-flex flex-column">
+                            <a class="dropdown-item fw-bolder" href="{{ url('dashboard') }}">{{ __('Dashboard') }}</a>
+                            <a class="dropdown-item fw-bolder" href="{{ url('profile') }}">{{ __('Profile') }}</a>
+                            <a class="dropdown-item fw-bolder" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                                         document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>
 
@@ -64,41 +65,49 @@
                                 @csrf
                             </form>
                         </div>
-                    </li>
-                </ul>
-            </div>
-        </header>
+                </li>
+            </ul>
+    </div>
 
-        <div class="container-fluid vh-100">
-            <div class="row h-100">
-                <!-- Definire solo parte del menu di navigazione inizialmente per poi
-        aggiungere i link necessari giorno per giorno
-        -->
-                <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-dark navbar-dark sidebar collapse">
-                    <div class="position-sticky pt-3">
-                        <ul class="nav flex-column">
-                            <li class="nav-item">
+    </header>
 
-                                <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.dashboard' ? 'bg-secondary' : '' }}"
-                                    href="{{ route('admin.dashboard') }}">
-                                    <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Dashboard
-                                </a>
-                            </li>
-                            <li class="p-3"><a href="{{ route('admin.projects.index') }}"
-                                    class=" text-decoration-none fw-bold text-white ">Project List</a></li>
-                            <li class="p-3"><a href="{{ route('admin.technologies.index') }}"
-                                    class=" text-decoration-none fw-bold text-white ">Technologies</a></li>
-                        </ul>
+    <div class="container-fluid vh-100 position-relative">
+        <div class="row h-100">
+
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block m_neg sidebar collapse">
+                <div class="position-sticky pt-4">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+
+                            <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.dashboard' ? 'bg_secondary' : '' }}"
+                                href="{{ route('admin.dashboard') }}">
+                                <i class="fa-solid fa-house fa-sm" style="color: #ffffff;"></i> Home
+                            </a>
+                        </li>
+                        <li
+                            class="p-3 {{ Route::currentRouteName() == 'admin.projects.index' ? 'bg_secondary' : '' }}">
+                            <a href="{{ route('admin.projects.index') }}"
+                                class=" text-decoration-none fw-bold text-white ">
+                                <i class="fa-solid fa-pen-to-square fa-sm" style="color: #ffffff;"></i> Project
+                                List</a>
+                        </li>
+                        <li
+                            class="p-3 {{ Route::currentRouteName() == 'admin.technologies.index' ? 'bg_secondary' : '' }}">
+                            <a href="{{ route('admin.technologies.index') }}"
+                                class=" text-decoration-none fw-bold text-white ">
+                                <i class="fa-solid fa-file-pen fa-sm" style="color: #ffffff;"></i> Technologies</a>
+                        </li>
+                    </ul>
 
 
-                    </div>
-                </nav>
+                </div>
+            </nav>
 
-                <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                    @yield('content')
-                </main>
-            </div>
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                @yield('content')
+            </main>
         </div>
+    </div>
 
     </div>
 </body>

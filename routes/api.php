@@ -30,4 +30,4 @@ Route::get('technologes', [TechnologyController::class, 'index']);
 Route::get('technologes/{technology:slug}', [TechnologyController::class, 'show']);
 
 
-Route::post('/contact', [LeadController::class, 'store']);
+Route::post('/contacts', [LeadController::class, 'store']);

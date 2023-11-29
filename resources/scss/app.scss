@@ -1,1 +1,11 @@
-@import '~bootstrap/scss/bootstrap'
+@import "~bootstrap/scss/bootstrap";
+#sidebarMenu,
+.bg_gray {
+  background-color: #757f9a;
+}
+.bg_secondary {
+  background-color: #d7dde8;
+}
+.m_neg {
+  margin-top: -56px;
+}

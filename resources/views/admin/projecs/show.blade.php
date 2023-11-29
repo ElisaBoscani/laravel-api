@@ -62,7 +62,6 @@
                                         <li>
                                             {{ $technology->name }}
                                             @if ($index < count($project->technologies) - 1)
-                                                ,
                                             @endif
                                         </li>
                                     @empty

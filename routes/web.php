@@ -27,12 +27,10 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
 
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('projects', ProjectController::class);
-});
-Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
-
-    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('technologies', TechnologyController::class);
+    Route::get('/github-data', [GitHubController::class, 'getGitHubData']);
 });
+
 
 
 
@@ -45,7 +43,7 @@ Route::middleware('auth')->group(function () {
 
 
 
-Route::get('/github-data', [GitHubController::class, 'getGitHubData']);
+
 
 
 Route::get('/mailable', function () {
